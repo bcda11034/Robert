@@ -12,12 +12,15 @@ const updateValueRoutes = require('./routes/updateValue');
 const spotPositionRoutes = require('./routes/spotPosition');
 const partialClosePositionRoutes = require('./routes/partialClosePosition');
 const path = require('path');
+const cors = require('cors');
 
 const app = express();
 connectDB();
 
 app.use(bodyParser.json());
-
+app.use(cors({
+  origin : 'http://localhost:3002'
+}));
 
 app.use(express.static(path.join(__dirname, '../frontend/build')));
 

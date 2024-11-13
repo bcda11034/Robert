@@ -4,6 +4,9 @@ import axios from 'axios';
 import './Login.css'; // New CSS file for Login styles
 
 const Login = () => {
+  const api = axios.create({
+    baseURL : process.env.REACT_APP_API_URL
+  })
   const navigate = useNavigate();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -17,7 +20,7 @@ const Login = () => {
     event.preventDefault();
     
     try {
-      const response = await axios.post('auth/login', { username, password }, {
+      const response = await api.post('auth/login', { username, password }, {
         headers: { 'Content-Type': 'application/json' },
       });
 

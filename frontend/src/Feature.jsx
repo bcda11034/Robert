@@ -23,7 +23,7 @@ const FuturesPage = () => {
 
   const loadUserData = async () => {
     try {
-      const response = await fetch('/api/getBalance', {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/getBalance`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -44,7 +44,7 @@ const FuturesPage = () => {
 
   const fetchUserData = async () => {
     try {
-      const response = await fetch('/api/getPositions', {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/getPositions`, {
         method: 'POST',
         headers: {
           'Authorization': 'Bearer ' + localStorage.getItem('token'),
@@ -66,7 +66,7 @@ const FuturesPage = () => {
     // Validation can go here
 
     try {
-      const response = await fetch('/api/withdrawRequest', {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/withdrawRequest`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
