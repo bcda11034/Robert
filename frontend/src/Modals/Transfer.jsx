@@ -1,10 +1,16 @@
+import { useRef } from "react";
+
 function Transfer({ futuresUSDTBalance, spotUSDTBalance }) {
+  
+  const transferUSDTTypeRef = useRef(null);
+  const transferUSDTAmountRef = useRef(null);
+  const transferModalFuturesUSDTRef = useRef(null);
+  const transferModalSpotUSDTRef = useRef(null);
+
+  const transferAmount = futuresUSDTBalance - spotUSDTBalance;
     function transferUSDT() {
-        const transferUSDTType =
-          document.getElementById("transfer-USDT-type").value;
-        const transferUSDTAmount = parseFloat(
-          document.getElementById("transfer-USDT-amount").value
-        );
+        const transferUSDTType = transferUSDTTypeRef.current.value;
+        const transferUSDTAmount = parseFloat(transferUSDTAmountRef.current.value);
         if (transferUSDTType == "fromFutures") {
           if (transferUSDTAmount > futuresUSDTBalance) {
             alert("Insufficient USDT in the Futures account");
@@ -19,16 +25,12 @@ function Transfer({ futuresUSDTBalance, spotUSDTBalance }) {
             alert("Insufficient USDT in the Spot account");
             return;
           } else {
-            // console.log(futuresUSDTBalance, spotUSDTBalance);
             futuresUSDTBalance += transferUSDTAmount;
             spotUSDTBalance -= transferUSDTAmount;
-            // console.log(futuresUSDTBalance, spotUSDTBalance);
           }
         }
-        document.getElementById("transfer-modal-futures-USDT").textContent =
-          futuresUSDTBalance.toFixed(2);
-        document.getElementById("transfer-modal-spot-USDT").textContent =
-          spotUSDTBalance.toFixed(2);
+        transferModalFuturesUSDTRef.current.textContent = futuresUSDTBalance.toFixed(2);
+        transferModalSpotUSDTRef.current.textContent = spotUSDTBalance.toFixed(2);
         fetch(`${process.env.REACT_APP_API_URL}/api/balance/updateBalance`, {
           method: "POST",
           headers: {
@@ -67,15 +69,20 @@ function Transfer({ futuresUSDTBalance, spotUSDTBalance }) {
                 <span
                 className="money-value"
                 id="transfer-modal-futures-USDT"
+                ref = { transferModalFuturesUSDTRef }
                 ></span>
                 &nbsp;&nbsp;&nbsp;&nbsp;
                 <span className="money-type">Est. Spot Balance(USDT)</span>
-                <span className="money-value" id="transfer-modal-spot-USDT"></span>
+                <span 
+                className="money-value" 
+                id="transfer-modal-spot-USDT"
+                ref = { transferModalSpotUSDTRef }
+                ></span>
             </p>
             <br />
             <p style={{ fontSize: "20px" }}>
                 <span>Mode:</span>
-                <select name="transferType" id="transfer-USDT-type">
+                <select name="transferType" id="transfer-USDT-type" ref = { transferUSDTTypeRef }>
                 <option value="fromFutures" selected>
                     Futures - Spot
                 </option>
@@ -90,6 +97,7 @@ function Transfer({ futuresUSDTBalance, spotUSDTBalance }) {
                 max="100"
                 id="transfer-USDT-amount"
                 style={{ fontSize: "20px", margin: "10px" }}
+                ref = { transferUSDTAmountRef }
                 />
                 <span className="money-unit">(USDT)</span>
                 <button id="transfer-USDT-btn" onClick={() => transferUSDT()}>
