@@ -14,7 +14,6 @@ function NavLeft () {
         evt.currentTarget.className += " active";
     }
     
-
     return (
         <div
         className="nav-left"

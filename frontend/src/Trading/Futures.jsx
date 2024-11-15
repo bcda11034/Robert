@@ -1,9 +1,19 @@
 import TradingViewWidget from "../TradingViewWidget";
+import AssetDropdown from "./AssetDropdown";
+import FuturesSelected from "./FuturesSelected";
+import MoneyBar from "./MoneyBar";
 
-function Futures ({selectedFuturesChartSymbol, tradingEnable, futuresAssetType}) {
+function Futures({
+  selectedFuturesChartSymbol,
+  tradingEnable,
+  futuresAssetType,
+  futuresPriceData,
+  assetTypes,
+  futuresSelectOption
+}) {
 
   async function futuresTrading(positionType, orderType) {
-    if(!tradingEnable)return;
+    if (!tradingEnable) return;
     tradingEnable = false;
 
     let betAmount = 0;
@@ -79,9 +89,9 @@ function Futures ({selectedFuturesChartSymbol, tradingEnable, futuresAssetType})
   }
 
   return (
-      <div id="futures" className="tabcontent trading-panel">
+    <div id="futures" className="tabcontent trading-panel">
       <div id="futures-statistics"></div>
-      <div id="futures-now-price" style={{ margin: "10px" }}></div>
+      <div id="futures-now-price" style={{ margin: "10px" }}><MoneyBar futuresPriceData={futuresPriceData}></MoneyBar></div>
       <h3 style={{ margin: "15px" }}>MEXC Futures Asset Price Chart</h3>
       <div className="chart-container">
         <TradingViewWidget
@@ -98,12 +108,24 @@ function Futures ({selectedFuturesChartSymbol, tradingEnable, futuresAssetType})
             <div
               className="custom-dropdown-selected"
               id="futures-dropdownSelected"
-              onClick={() => {showFuturesAssetsList();}}
-            ></div>
+              onClick={() => { showFuturesAssetsList(); }}
+            >
+              <FuturesSelected
+                futuresAssetType={futuresAssetType}
+                futuresPriceData={futuresPriceData}
+              />
+            </div>
             <div
               className="custom-dropdown-options"
               id="futures-dropdownOptions"
-            ></div>
+            >
+              <AssetDropdown
+                assetTypes={assetTypes}
+                futuresAssetType={futuresAssetType}
+                futuresPriceData={futuresPriceData}
+                futuresSelectOption={futuresSelectOption}
+              />
+            </div>
           </div>
         </div>
 
