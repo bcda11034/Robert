@@ -32,14 +32,9 @@ function Transfer({ futuresUSDTBalance, spotUSDTBalance }) {
     transferModalFuturesUSDTRef.current.textContent = futuresUSDTBalance.toFixed(2);
     transferModalSpotUSDTRef.current.textContent = spotUSDTBalance.toFixed(2);
     fetch(`${process.env.REACT_APP_API_URL}/api/balance/updateBalance`, {
-      method: "POST",
-      headers: {
-        Authorization: "Bearer " + localStorage.getItem("token"),
-        "Content-Type": "application/json",
-      },
+      method: "POST", headers: { Authorization: "Bearer " + localStorage.getItem("token"), "Content-Type": "application/json", },
       body: JSON.stringify({
-        futuresUSDTBalance,
-        spotUSDTBalance,
+        futuresUSDTBalance, spotUSDTBalance,
       }),
     })
       .then((response) => {
@@ -53,56 +48,30 @@ function Transfer({ futuresUSDTBalance, spotUSDTBalance }) {
     <div id="transfer-USDT-modal" className="modal">
       {/* <!-- Modal content --> */}
       <div className="modal-content-transfer">
-        <span
-          className="close"
-          onClick={() => {
-            document.getElementById("transfer-USDT-modal").style.display =
-              "none";
-          }}
-        >
+        <span className="close"
+          onClick={() => { document.getElementById("transfer-USDT-modal").style.display = "none"; }}>
           &times;
         </span>
         <h2>USDT Transfer</h2>
         <br />
         <p>
           <span className="money-type">Est. Futures Balance(USDT)</span>
-          <span
-            className="money-value"
-            id="transfer-modal-futures-USDT"
-            ref={transferModalFuturesUSDTRef}
-          ></span>
+          <span className="money-value" id="transfer-modal-futures-USDT" ref={transferModalFuturesUSDTRef}></span>
           &nbsp;&nbsp;&nbsp;&nbsp;
           <span className="money-type">Est. Spot Balance(USDT)</span>
-          <span
-            className="money-value"
-            id="transfer-modal-spot-USDT"
-            ref={transferModalSpotUSDTRef}
-          ></span>
+          <span className="money-value" id="transfer-modal-spot-USDT" ref={transferModalSpotUSDTRef}></span>
         </p>
         <br />
         <p style={{ fontSize: "20px" }}>
           <span>Mode:</span>
           <select name="transferType" id="transfer-USDT-type" ref={transferUSDTTypeRef}>
-            <option value="fromFutures" selected>
-              Futures - Spot
-            </option>
-            <option value="fromSpot" selected>
-              Spot - Futures
-            </option>
+            <option value="fromFutures" selected>Futures - Spot</option>
+            <option value="fromSpot" selected>Spot - Futures</option>
           </select>
           <span>Amount:</span>
-          <input
-            type="number"
-            min="1"
-            max="100"
-            id="transfer-USDT-amount"
-            style={{ fontSize: "20px", margin: "10px" }}
-            ref={transferUSDTAmountRef}
-          />
+          <input type="number" min="1" max="100" id="transfer-USDT-amount" style={{ fontSize: "20px", margin: "10px" }} ref={transferUSDTAmountRef} />
           <span className="money-unit">(USDT)</span>
-          <button id="transfer-USDT-btn" onClick={() => transferUSDT()}>
-            Transfer
-          </button>
+          <button id="transfer-USDT-btn" onClick={() => transferUSDT()}>Transfer</button>
         </p>
       </div>
     </div>

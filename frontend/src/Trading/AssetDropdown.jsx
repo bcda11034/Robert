@@ -17,9 +17,7 @@ function AssetDropdown({ assetTypes, futuresAssetType, futuresPriceData, futures
                                 ${Intl.NumberFormat("en-US").format(currentPrice?.price)}
                             </span>&nbsp;&nbsp;
                             <span class={currentPrice?.percent >= 0 ? "percent-plus" : "percent-minus"}>
-                                ${
-                                    (currentPrice?.percent != null) ? (currentPrice.percent * 100).toFixed(2) : ""
-                                }%
+                                ${ (currentPrice?.percent != null) ? (currentPrice.percent * 100).toFixed(2) : "" }%
                             </span>
                         </div>
                     )

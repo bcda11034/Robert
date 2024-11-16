@@ -105,17 +105,7 @@ const TradingApp = () => {
     }
 
     async function fetchSpotCurrentPrices() {
-      const spotPriceResponse = await api.post(
-        "/api/market/getCurrentPrice",
-        {
-          accountType: "spot",
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const spotPriceResponse = await api.post("/api/market/getCurrentPrice", { accountType: "spot", }, { headers: { "Content-Type": "application/json", },});
       const spotPriceData = await spotPriceResponse.data;
       if (!spotPriceData.ok) {
         throw new Error("Failed to fetch spot prices");
@@ -125,8 +115,7 @@ const TradingApp = () => {
         spotCurrentPrices = spotPriceData.currentPrices;
 
       let priceText = "<div class='money-bar'>";
-      priceText += spotPriceData.currentPrices
-        .map(
+      priceText += spotPriceData.currentPrices.map(
           (price) =>
             `<div class='money-div'>
             <span class='money-type'>${price.assetType}:</span>

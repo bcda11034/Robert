@@ -15,25 +15,11 @@ function NavLeft () {
     }
     
     return (
-        <div
-        className="nav-left"
-        style={{ flexDirection: "row", display: "flex" }}
-        >
+        <div className="nav-left" style={{ flexDirection: "row", display: "flex" }}>
             {/* <!--left--> */}
             <div className="tab">
-            <button
-                className="tablinks"
-                onClick={(event) => selectTrading(event, "futures")}
-                id="defaultOpen"
-            >
-                Futures Trading
-            </button>
-            <button
-                className="tablinks"
-                onClick={(event) => selectTrading(event, "spot")}
-            >
-                Spot Trading
-            </button>
+            <button className="tablinks" onClick={(event) => selectTrading(event, "futures")} id="defaultOpen">Futures Trading</button>
+            <button className="tablinks" onClick={(event) => selectTrading(event, "spot")}>Spot Trading</button>
             </div>
         </div>
     )

@@ -1,15 +1,7 @@
 import TradingViewWidget from "../TradingViewWidget";
 
-function Spot({
-  tradingEnable,
-  spotUSDTBalance,
-  spotCurrentPrices,
-  spotAssetType,
-  spotBalances,
-  assetTypes,
-  selectedSpotChartSymbol
-}) {
-
+function Spot({ tradingEnable, spotUSDTBalance, spotCurrentPrices, spotAssetType, spotBalances, assetTypes, selectedSpotChartSymbol }) 
+{
   function spotTrading(positionType, orderType) {
     if (!tradingEnable) return;
     tradingEnable = false;
@@ -56,12 +48,7 @@ function Spot({
       }
     }
 
-    fetch(`${process.env.REACT_APP_API_URL}/api/openSpotPosition`, {
-      method: "POST",
-      headers: {
-        Authorization: "Bearer " + localStorage.getItem("token"),
-        "Content-Type": "application/json",
-      },
+    fetch(`${process.env.REACT_APP_API_URL}/api/openSpotPosition`, { method: "POST", headers: { Authorization: "Bearer " + localStorage.getItem("token"), "Content-Type": "application/json", },
       body: JSON.stringify({
         spotAssetType,
         positionType,
@@ -70,22 +57,22 @@ function Spot({
         limitPrice,
       }),
     })
-      .then((response) => {
-        if (!response.ok) {
-          tradingEnable = true;
-          throw new Error("Network response was not ok");
-        }
-        return response.json();
-      })
-      .then((data) => {
-        alert(`${positionType} ${amount} ${spotAssetType}`);
+    .then((response) => {
+      if (!response.ok) {
         tradingEnable = true;
-      })
-      .catch((error) => {
-        tradingEnable = true;
-        console.error("Error placing bet:", error);
-        alert("Error placing bet. Please try again.");
-      });
+        throw new Error("Network response was not ok");
+      }
+      return response.json();
+    })
+    .then((data) => {
+      alert(`${positionType} ${amount} ${spotAssetType}`);
+      tradingEnable = true;
+    })
+    .catch((error) => {
+      tradingEnable = true;
+      console.error("Error placing bet:", error);
+      alert("Error placing bet. Please try again.");
+    });
   }
 
   function showSpotAssetsList() {
@@ -103,103 +90,51 @@ function Spot({
       <h3 style={{ margin: "15px" }}>MEXC Spot Asset Price Chart</h3>
 
       <div className="chart-container">
-        <TradingViewWidget
-          symbol={selectedSpotChartSymbol}
-          key={selectedSpotChartSymbol}
-          id="tradingview-widget"
-        ></TradingViewWidget>
+        <TradingViewWidget symbol={selectedSpotChartSymbol} key={selectedSpotChartSymbol} id="tradingview-widget"></TradingViewWidget>
       </div>
 
       <div className="order-panel">
         <div className="order-header">
           <div className="asset-label">Select an Asset Type:</div>
           <div className="custom-dropdown">
-            <div
-              className="custom-dropdown-selected"
-              id="spot-dropdownSelected"
-              onClick={() => { showSpotAssetsList(); }}
-            ></div>
-            <div
-              className="custom-dropdown-options"
-              id="spot-dropdownOptions"
-            ></div>
+            <div className="custom-dropdown-selected" id="spot-dropdownSelected" onClick={() => { showSpotAssetsList(); }}></div>
+            <div className="custom-dropdown-options" id="spot-dropdownOptions"></div>
           </div>
           <div style={{ margin: "15px" }} id="spot-assets-statistics"></div>
         </div>
 
         <div>
-          <label style={{ color: "rgb(255, 0, 0)", fontSize: "24px" }}>
-            Market:{" "}
-          </label>
+          <label style={{ color: "rgb(255, 0, 0)", fontSize: "24px" }}>Market:{" "}</label>
           &nbsp;&nbsp;
           <label>Amount:</label>
-          <input
-            type="number"
-            id="spot-market-amount"
-            min="1"
-            max="100"
-            style={{ width: "80px", fontSize: "20px" }}
-          />
+          <input type="number" id="spot-market-amount" min="1" max="100" style={{ width: "80px", fontSize: "20px" }} />
           <span className="money-unit" id="spot-market-unit"></span>
           &nbsp;&nbsp;
-          <button
-            id="market-buy-button"
-            className="playbutttton"
-            style={{ marginTop: "15px" }}
-            onClick={() => spotTrading("buy", "market")}
-          >
-            Buy
+          <button id="market-buy-button" className="playbutttton" style={{ marginTop: "15px" }} 
+            onClick={() => spotTrading("buy", "market")}>Buy
           </button>
           &nbsp;&nbsp;
-          <button
-            id="market-sell-button"
-            className="playbutttton"
-            style={{ marginTop: "15px" }}
-            onClick={() => spotTrading("sell", "market")}
-          >
-            Sell
+          <button  id="market-sell-button" className="playbutttton" style={{ marginTop: "15px" }}
+            onClick={() => spotTrading("sell", "market")}>Sell
           </button>
         </div>
         <div>
-          <label style={{ color: "rgb(255, 0, 0)", fontSize: "24px" }}>
-            Limit:{" "}
+          <label style={{ color: "rgb(255, 0, 0)", fontSize: "24px" }}>Limit:{" "}
           </label>
           &nbsp;&nbsp;
           <label>Amount:</label>
-          <input
-            type="number"
-            id="spot-limit-amount"
-            min="1"
-            max="100"
-            style={{ width: "80px", fontSize: "20px" }}
-          />
+          <input type="number" id="spot-limit-amount" min="1" max="100" style={{ width: "80px", fontSize: "20px" }} />
           <span className="money-unit" id="spot-limit-unit"></span>
           &nbsp;&nbsp;
           <label>Price:</label>
-          <input
-            type="number"
-            id="spot-limit-price"
-            min="1"
-            max="100"
-            style={{ width: "80px", fontSize: "20px" }}
-          />
+          <input type="number" id="spot-limit-price" min="1" max="100" style={{ width: "80px", fontSize: "20px" }} />
           <span className="money-unit">(USDT)</span>&nbsp;&nbsp;
-          <button
-            id="limit-buy-button"
-            className="playbutttton"
-            style={{ marginTop: "15px" }}
-            onClick={() => spotTrading("buy", "limit")}
-          >
-            Buy
+          <button id="limit-buy-button" className="playbutttton" style={{ marginTop: "15px" }}
+            onClick={() => spotTrading("buy", "limit")}>Buy
           </button>
           &nbsp;&nbsp;
-          <button
-            id="limit-sell-button"
-            className="playbutttton"
-            style={{ marginTop: "15px" }}
-            onClick={() => spotTrading("sell", "limit")}
-          >
-            Sell
+          <button id="limit-sell-button" className="playbutttton" style={{ marginTop: "15px" }}
+            onClick={() => spotTrading("sell", "limit")}>Sell
           </button>
         </div>
       </div>

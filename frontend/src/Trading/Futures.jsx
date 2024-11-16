@@ -94,135 +94,59 @@ function Futures({
       <div id="futures-now-price" style={{ margin: "10px" }}><MoneyBar futuresPriceData={futuresPriceData}></MoneyBar></div>
       <h3 style={{ margin: "15px" }}>MEXC Futures Asset Price Chart</h3>
       <div className="chart-container">
-        <TradingViewWidget
-          symbol={selectedFuturesChartSymbol}
-          key={selectedFuturesChartSymbol}
-          id="futures-tradingview-widget"
-        ></TradingViewWidget>
+        <TradingViewWidget symbol={selectedFuturesChartSymbol} key={selectedFuturesChartSymbol} id="futures-tradingview-widget"></TradingViewWidget>
       </div>
 
       <div className="order-panel">
         <div className="order-header">
           <div className="asset-label">Select an Asset Type:</div>
           <div className="custom-dropdown">
-            <div
-              className="custom-dropdown-selected"
-              id="futures-dropdownSelected"
-              onClick={() => { showFuturesAssetsList(); }}
-            >
-              <FuturesSelected
-                futuresAssetType={futuresAssetType}
-                futuresPriceData={futuresPriceData}
-              />
+            <div className="custom-dropdown-selected" id="futures-dropdownSelected" onClick={() => { showFuturesAssetsList(); }}>
+              <FuturesSelected futuresAssetType={futuresAssetType} futuresPriceData={futuresPriceData} />
             </div>
-            <div
-              className="custom-dropdown-options"
-              id="futures-dropdownOptions"
-            >
-              <AssetDropdown
-                assetTypes={assetTypes}
-                futuresAssetType={futuresAssetType}
-                futuresPriceData={futuresPriceData}
-                futuresSelectOption={futuresSelectOption}
-              />
+            <div className="custom-dropdown-options" id="futures-dropdownOptions">
+              <AssetDropdown assetTypes={assetTypes} futuresAssetType={futuresAssetType} futuresPriceData={futuresPriceData} futuresSelectOption={futuresSelectOption}/>
             </div>
           </div>
         </div>
 
         <div>
-          <label style={{ color: "rgb(255, 0, 0)", fontSize: "24px" }}>
-            Market Order:{" "}
-          </label>
+          <label style={{ color: "rgb(255, 0, 0)", fontSize: "24px" }}>Market Order:{" "}</label>
           &nbsp;&nbsp;
           <label>Bet Amount:</label>
-          <input
-            type="number"
-            id="bet-amount"
-            min="1"
-            max="100"
-            style={{ width: "80px", fontSize: "20px" }}
-          />
+          <input type="number" id="bet-amount" min="1" max="100" style={{ width: "80px", fontSize: "20px" }} />
           <span className="money-unit">(USDT)</span>&nbsp;&nbsp;
           <label>Leverage:</label>
-          <input
-            type="number"
-            id="bet-leverage"
-            min="1"
-            max="300"
-            defaultValue="1"
-            style={{ width: "50px", fontSize: "20px" }}
-          />
+          <input type="number" id="bet-leverage" min="1" max="300" defaultValue="1" style={{ width: "50px", fontSize: "20px" }} />
           &nbsp;&nbsp;
-          <button
-            id="long-button"
-            className="playbutttton"
-            style={{ marginTop: "15px" }}
-            onClick={() => tradingEnable && futuresTrading("long", "market")}
-          >
-            Long
+          <button id="long-button" className="playbutttton" style={{ marginTop: "15px" }} 
+            onClick={() => tradingEnable && futuresTrading("long", "market")}>Long
           </button>
           &nbsp;&nbsp;
-          <button
-            id="short-button"
-            className="playbutttton"
-            style={{ marginTop: "15px" }}
-            onClick={() => tradingEnable && futuresTrading("short", "market")}
-          >
+          <button id="short-button" className="playbutttton" style={{ marginTop: "15px" }}
+            onClick={() => tradingEnable && futuresTrading("short", "market")}>
             Short
           </button>
           &nbsp;&nbsp;
         </div>
         <div>
-          <label style={{ color: "rgb(255, 0, 0)", fontSize: "24px" }}>
-            Limit Order:{" "}
-          </label>
+          <label style={{ color: "rgb(255, 0, 0)", fontSize: "24px" }}>Limit Order:{" "}</label>
           &nbsp;&nbsp;
           <label>Bet Amount:</label>
-          <input
-            type="number"
-            id="limit-amount"
-            min="1"
-            max="100"
-            style={{ width: "80px", fontSize: "20px" }}
-          />
+          <input type="number" id="limit-amount" min="1" max="100" style={{ width: "80px", fontSize: "20px" }} />
           <span className="money-unit">(USDT)</span>&nbsp;&nbsp;
           <label>Leverage:</label>
-          <input
-            type="number"
-            id="limit-leverage"
-            min="1"
-            max="300"
-            defaultValue="1"
-            style={{ width: "50px", fontSize: "20px" }}
-          />
+          <input type="number" id="limit-leverage" min="1" max="300" defaultValue="1" style={{ width: "50px", fontSize: "20px" }} />
           &nbsp;&nbsp;
           <label>Limit Price:</label>
-          <input
-            type="number"
-            id="limit-price"
-            style={{ width: "100px", fontSize: "20px" }}
-          />
+          <input type="number" id="limit-price" style={{ width: "100px", fontSize: "20px" }} />
           <span className="money-unit">(USDT)</span>&nbsp;&nbsp;
-          <button
-            id="limit-long-button"
-            className="playbutttton"
-            style={{ marginTop: "15px" }}
-            onClick={() => {
-              futuresTrading("long", "limit");
-            }}
-          >
-            Long
+          <button id="limit-long-button" className="playbutttton" style={{ marginTop: "15px" }}
+            onClick={() => { futuresTrading("long", "limit"); }}>Long
           </button>
           &nbsp;&nbsp;
-          <button
-            id="limit-short-button"
-            className="playbutttton"
-            style={{ marginTop: "15px" }}
-            onClick={() => {
-              futuresTrading("short", "limit");
-            }}
-          >
-            Short
+          <button id="limit-short-button" className="playbutttton" style={{ marginTop: "15px" }}
+            onClick={() => { futuresTrading("short", "limit"); }}>Short 
           </button>
           &nbsp;&nbsp;
         </div>
