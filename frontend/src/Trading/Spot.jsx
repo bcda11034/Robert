@@ -1,17 +1,17 @@
 import TradingViewWidget from "../TradingViewWidget";
 
-function Spot ({
-    tradingEnable,
-    spotUSDTBalance,
-    spotCurrentPrices,
-    spotAssetType,
-    spotBalances,
-    assetTypes,
-    selectedSpotChartSymbol
-  }) {
+function Spot({
+  tradingEnable,
+  spotUSDTBalance,
+  spotCurrentPrices,
+  spotAssetType,
+  spotBalances,
+  assetTypes,
+  selectedSpotChartSymbol
+}) {
 
   function spotTrading(positionType, orderType) {
-    if(!tradingEnable)return;
+    if (!tradingEnable) return;
     tradingEnable = false;
 
     let amount = 0;
@@ -38,11 +38,9 @@ function Spot ({
     }
 
     if (positionType == "buy") {
-      if (
-        spotUSDTBalance <
-        amount *
-          spotCurrentPrices.filter((item) => item.assetType == spotAssetType)[0].price
-      ) {
+      let spotCurrentPrice = spotCurrentPrices.filter((item) => item.assetType == spotAssetType)[0];
+
+      if (spotCurrentPrice?.price != null && spotUSDTBalance < amount * spotCurrentPrice.price) {
         console.log(spotUSDTBalance, amount, spotCurrentPrices);
         alert("Insufficient USDT");
         tradingEnable = true;
@@ -52,7 +50,7 @@ function Spot ({
 
     if (positionType == "sell") {
       if (amount > spotBalances[assetTypes.indexOf(spotAssetType) + 1]) {
-        alert("Insufficient " + spotAssetType + amount + "/" +spotBalances[assetTypes.indexOf(spotAssetType) + 1]  + "/" +  (assetTypes.indexOf(spotAssetType) + 1) + ":" + spotBalances.length);
+        alert("Insufficient " + spotAssetType + amount + "/" + spotBalances[assetTypes.indexOf(spotAssetType) + 1] + "/" + (assetTypes.indexOf(spotAssetType) + 1) + ":" + spotBalances.length);
         tradingEnable = true;
         return;
       }
@@ -99,7 +97,7 @@ function Spot ({
   }
 
   return (
-      <div id="spot" className="tabcontent trading-panel">
+    <div id="spot" className="tabcontent trading-panel">
       <div id="spot-statistics"></div>
       <div id="spot-now-price" style={{ margin: "10px" }}></div>
       <h3 style={{ margin: "15px" }}>MEXC Spot Asset Price Chart</h3>
@@ -119,7 +117,7 @@ function Spot ({
             <div
               className="custom-dropdown-selected"
               id="spot-dropdownSelected"
-              onClick={() => {showSpotAssetsList();}}
+              onClick={() => { showSpotAssetsList(); }}
             ></div>
             <div
               className="custom-dropdown-options"
