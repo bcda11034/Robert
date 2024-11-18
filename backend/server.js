@@ -12,10 +12,10 @@ const candlesRoutes = require('./routes/candles');
 const updateValueRoutes = require('./routes/updateValue');
 const spotPositionRoutes = require('./routes/spotPosition');
 const partialClosePositionRoutes = require('./routes/partialClosePosition');
+const { startCheckingOrderService } = require('./services/checkingOrderService');
 const path = require('path');
 
 const app = express();
-connectDB();
 
 app.use(bodyParser.json());
 
@@ -42,4 +42,8 @@ app.use('/api/updateValue', updateValueRoutes);
 app.use('/api/openSpotPosition', spotPositionRoutes);
 app.use('/api/partialClosePosition', partialClosePositionRoutes);
 
-app.listen(3000, () => console.log('Server running on port 3000 http://localhost:3000/'));
+app.listen(3000, async () => {
+  await connectDB();
+  startCheckingOrderService();
+  console.log('Server running on port 3000 http://localhost:3000/')
+});

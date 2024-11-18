@@ -152,7 +152,7 @@ router.post('/closeFuturesPosition', authenticateToken, async (req, res) => {
         sendPositionClosedEmail(username, closedPosition, currentMarketPrice);
 
         saveUser(user);
-        res.json({ futuresPositions: user.futuresPositions, newFuturesUSDTBalance: user.futuresUSDTBalance, profitLoss , ok:true});
+        res.json({ futuresPositions: user.futuresPositions, newFuturesUSDTBalance: user.futuresUSDTBalance, profitLoss, ok: true });
 
     } catch (err) {
         console.error(err.message);
@@ -187,10 +187,10 @@ router.post('/closeSpotPosition', authenticateToken, async (req, res) => {
             (item) => item.assetType == closedPosition.assetType
         )[0].price;
 
-        if (closedPosition.positionType == 'buy') {
+        if (closedPosition.positionType == 'buy' && closedPosition.orderType != "limit") {
             user.spotUSDTBalance += closedPosition.amount * closedPosition.entryPrice; // Add the amount and profit/loss
         }
-        if (closedPosition.positionType == 'sell') {
+        if (closedPosition.positionType == 'sell' && closedPosition.orderType != "limit") {
             user.spotUSDTBalance -= closedPosition.amount * closedPosition.entryPrice; // Add the amount and profit/loss
         }
 
@@ -204,10 +204,10 @@ router.post('/closeSpotPosition', authenticateToken, async (req, res) => {
         //     exitPrice: currentMarketPrice
         // });
 
-        sendPositionClosedEmail(username, closedPosition, currentMarketPrice);
+        //sendPositionClosedEmail(username, closedPosition, currentMarketPrice);
 
         saveUser(user);
-        res.json({ spotPositions: user.spotPositions, newSpotUSDTBalance: user.spotUSDTBalance, ok: true});
+        res.json({ spotPositions: user.spotPositions, newSpotUSDTBalance: user.spotUSDTBalance, ok: true });
     } catch (err) {
         console.error(err.message);
         res.status(500).send('Server error');
@@ -237,7 +237,7 @@ router.post('/saveTPSL', authenticateToken, async (req, res) => {
         if (oldSL != sl) sendPositionSLEmail(username, positions.futuresPositions[positionIndex]);
 
         await saveUserPositions(username, positions);
-        res.json({ futuresPositions: positions.futuresPositions, ok:true, });
+        res.json({ futuresPositions: positions.futuresPositions, ok: true, });
     } catch (err) {
         console.error(err.message);
         res.status(500).send('Server error');

@@ -33,6 +33,7 @@ router.post('/', authenticateToken, async (req, res) => {
         const currentMarketPrice = currentMarketPrices.filter(
             (item) => item.assetType == spotAssetType
         )[0].price;
+
         const positionId = Date.now(); // Unique ID for the position (can be replaced with a more robust method)
 
         const position = {
@@ -45,39 +46,25 @@ router.post('/', authenticateToken, async (req, res) => {
             limitPrice,
             entryPrice: currentMarketPrice,
         };
-        
-        if (positionType == 'buy') {
+
+        if (positionType == 'buy' && orderType != "limit") {
             if (user.spotUSDTBalance < amount * currentMarketPrice) {
                 return res.status(400).send("Insufficient balance");
             }
             user.spotUSDTBalance -= amount * currentMarketPrice;
 
-            sendTokenBuyEmail(username, position, currentMarketPrice, spotAssetType, amount);
+            // sendTokenBuyEmail(username, position, currentMarketPrice, spotAssetType, amount);
         }
 
-        if (positionType == 'sell') {
+        if (positionType == 'sell' && orderType != "limit") {
             user.spotUSDTBalance += amount * currentMarketPrice;
-            sendTokenSellEmail(username, position, currentMarketPrice, spotAssetType, amount);
+            // sendTokenSellEmail(username, position, currentMarketPrice, spotAssetType, amount);
         }
 
         // Initialize positions array if not exists
         if (!user.spotPositions) {
             user.spotPositions = [];
         }
-
-        // if (!user.closedSpotPositions) {
-        //     user.closedSpotPositions = [];
-        // }
-
-        // if (position.positionType == 'buy') {
-        //     user.spotPositions.push(position);
-        //     sendPositionOpenEmail(username, position);
-        // }
-
-        // if (position.positionType == 'sell') {
-        //     user.closedSpotPositions.push(position);
-        //     sendPositionClosedEmail(username, position, currentMarketPrice);
-        // }
 
         user.spotPositions.push(position);
 

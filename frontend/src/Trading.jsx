@@ -95,11 +95,10 @@ const TradingApp = () => {
             `<div class='money-div'>
             <span class='money-type'>${price.assetType}:</span>
              <span class='money-value'>${new Intl.NumberFormat("en-US").format(
-               price.price
-             )}</span>&nbsp;&nbsp;
-             <span class=${
-               price.percent >= 0 ? "percent-plus" : "percent-minus"
-             }>${(price.percent * 100).toFixed(2)}%&nbsp;</span>
+              price.price
+            )}</span>&nbsp;&nbsp;
+             <span class=${price.percent >= 0 ? "percent-plus" : "percent-minus"
+            }>${(price.percent * 100).toFixed(2)}%&nbsp;</span>
              </div>`
         )
         .join("");
@@ -115,22 +114,21 @@ const TradingApp = () => {
                       <span class="crypto-icon-small"><img src="icon/${asset}.png"></span>
                       <span class="money-type">${asset}_USDT:&nbsp; </span>
                       <span class="money-value">${Intl.NumberFormat(
-                        "en-US"
-                      ).format(
-                        futuresCurrentPrices.find(
-                          (item) => item.assetType === asset
-                        ).price
-                      )}</span>&nbsp;&nbsp;
-                      <span class=${
-                        futuresCurrentPrices.find(
-                          (item) => item.assetType === asset
-                        ).percent >= 0
-                          ? "percent-plus"
-                          : "percent-minus"
-                      }>${(
-            futuresCurrentPrices.find((item) => item.assetType === asset)
-              .percent * 100
-          ).toFixed(2)}% </span>
+            "en-US"
+          ).format(
+            futuresCurrentPrices.find(
+              (item) => item.assetType === asset
+            ).price
+          )}</span>&nbsp;&nbsp;
+                      <span class=${futuresCurrentPrices.find(
+            (item) => item.assetType === asset
+          ).percent >= 0
+              ? "percent-plus"
+              : "percent-minus"
+            }>${(
+              futuresCurrentPrices.find((item) => item.assetType === asset)
+                .percent * 100
+            ).toFixed(2)}% </span>
                       </div>`;
         }
       });
@@ -141,22 +139,21 @@ const TradingApp = () => {
       ).innerHTML = `<span class="crypto-icon-small"><img src="icon/${futuresAssetType}.png" style="width:48px;height:48px;"></span>
                       <span class="money-type">${futuresAssetType}_USDT:&nbsp;&nbsp;</span>
                       <span class="money-value">${Intl.NumberFormat(
-                        "en-US"
-                      ).format(
-                        futuresCurrentPrices.find(
-                          (item) => item.assetType === futuresAssetType
-                        ).price
-                      )}</span>&nbsp;&nbsp;
-                      <span class=${
-                        futuresCurrentPrices.find(
-                          (item) => item.assetType === futuresAssetType
-                        ).percent >= 0
-                          ? "percent-plus"
-                          : "percent-minus"
-                      }>${(
-        futuresCurrentPrices.find((item) => item.assetType === futuresAssetType)
-          .percent * 100
-      ).toFixed(2)}% </span>`;
+        "en-US"
+      ).format(
+        futuresCurrentPrices.find(
+          (item) => item.assetType === futuresAssetType
+        ).price
+      )}</span>&nbsp;&nbsp;
+                      <span class=${futuresCurrentPrices.find(
+        (item) => item.assetType === futuresAssetType
+      ).percent >= 0
+          ? "percent-plus"
+          : "percent-minus"
+        }>${(
+          futuresCurrentPrices.find((item) => item.assetType === futuresAssetType)
+            .percent * 100
+        ).toFixed(2)}% </span>`;
 
       assetTypes.forEach((asset, index) => {
         if (asset != futuresAssetType) {
@@ -196,11 +193,10 @@ const TradingApp = () => {
             `<div class='money-div'>
             <span class='money-type'>${price.assetType}:</span>
              <span class='money-value'>${new Intl.NumberFormat("en-US").format(
-               price.price
-             )}</span>&nbsp;&nbsp;
-             <span class=${
-               price.percent >= 0 ? "percent-plus" : "percent-minus"
-             }>${(price.percent * 100).toFixed(2)}%&nbsp;</span>
+              price.price
+            )}</span>&nbsp;&nbsp;
+             <span class=${price.percent >= 0 ? "percent-plus" : "percent-minus"
+            }>${(price.percent * 100).toFixed(2)}%&nbsp;</span>
              </div>`
         )
         .join("");
@@ -216,22 +212,21 @@ const TradingApp = () => {
                         <span class="crypto-icon-small"><img src="icon/${asset}.png"></span>
                         <span class="money-type">${asset}_USDT:&nbsp; </span>
                         <span class="money-value">${Intl.NumberFormat(
-                          "en-US"
-                        ).format(
-                          spotCurrentPrices.find(
-                            (item) => item.assetType === asset
-                          ).price
-                        )}</span>&nbsp;&nbsp;
-                        <span class=${
-                          spotCurrentPrices.find(
-                            (item) => item.assetType === asset
-                          ).percent >= 0
-                            ? "percent-plus"
-                            : "percent-minus"
-                        }>${(
-            spotCurrentPrices.find((item) => item.assetType === asset).percent *
-            100
-          ).toFixed(2)}% </span>
+            "en-US"
+          ).format(
+            spotCurrentPrices.find(
+              (item) => item.assetType === asset
+            ).price
+          )}</span>&nbsp;&nbsp;
+                        <span class=${spotCurrentPrices.find(
+            (item) => item.assetType === asset
+          ).percent >= 0
+              ? "percent-plus"
+              : "percent-minus"
+            }>${(
+              spotCurrentPrices.find((item) => item.assetType === asset).percent *
+              100
+            ).toFixed(2)}% </span>
                         </div>`;
         }
       });
@@ -242,22 +237,21 @@ const TradingApp = () => {
       ).innerHTML = `<span class="crypto-icon-small"><img src="icon/${spotAssetType}.png" style="width:48px;height:48px;"></span>
                       <span class="money-type">${spotAssetType}_USDT:&nbsp; </span>
                         <span class="money-value">${Intl.NumberFormat(
-                          "en-US"
-                        ).format(
-                          spotCurrentPrices.find(
-                            (item) => item.assetType === spotAssetType
-                          ).price
-                        )}</span>&nbsp;&nbsp;
-                        <span class=${
-                          spotCurrentPrices.find(
-                            (item) => item.assetType === spotAssetType
-                          ).percent >= 0
-                            ? "percent-plus"
-                            : "percent-minus"
-                        }>${(
-        spotCurrentPrices.find((item) => item.assetType === spotAssetType)
-          .percent * 100
-      ).toFixed(2)}% </span>`;
+        "en-US"
+      ).format(
+        spotCurrentPrices.find(
+          (item) => item.assetType === spotAssetType
+        ).price
+      )}</span>&nbsp;&nbsp;
+                        <span class=${spotCurrentPrices.find(
+        (item) => item.assetType === spotAssetType
+      ).percent >= 0
+          ? "percent-plus"
+          : "percent-minus"
+        }>${(
+          spotCurrentPrices.find((item) => item.assetType === spotAssetType)
+            .percent * 100
+        ).toFixed(2)}% </span>`;
 
       assetTypes.forEach((asset, index) => {
         if (asset != spotAssetType) {
@@ -269,7 +263,7 @@ const TradingApp = () => {
         }
       });
     }
-    
+
     async function fetchUserData() {
       try {
         const balanceResponse = await axios.post(
@@ -393,9 +387,9 @@ const TradingApp = () => {
           ) {
             alert(
               "unrealizedPL: " +
-                unrealizedPL +
-                "position.amount: " +
-                position.amount
+              unrealizedPL +
+              "position.amount: " +
+              position.amount
             );
             futuresUnrealizedPL -= position.amount;
             futuresPositionsAmount += position.amount;
@@ -421,9 +415,8 @@ const TradingApp = () => {
             } else {
               if (count !== futuresPositionsCount) {
                 positionDiv.textContent = `
-                                        ${1 - position.orderLimit}-${
-                  position.orderType
-                }-${position.positionType}- ${position.assetType}- 
+                                        ${1 - position.orderLimit}-${position.orderType
+                  }-${position.positionType}- ${position.assetType}- 
                                         Amount: $${position.amount},
                                         Leverage: ${position.leverage}X, 
                                         Entry: $${position.entryPrice},
@@ -541,9 +534,8 @@ const TradingApp = () => {
 
           if (count !== futuresClosedPositionsCount) {
             positionDiv.textContent = `
-                                    ${1 - position.orderLimit}-${
-              position.orderType
-            }-${position.positionType}-${position.assetType}- 
+                                    ${1 - position.orderLimit}-${position.orderType
+              }-${position.positionType}-${position.assetType}- 
                                     Amount: $${position.amount},
                                     Leverage: ${position.leverage}X, 
                                     Entry: $${position.entryPrice},
@@ -623,7 +615,7 @@ const TradingApp = () => {
         futuresClosedPositionsCount = count;
         // setFuturesClosedPositionsCount(count)
       }
-      
+
       spotBalances = [];
       spotBalances.push(spotUSDTBalance);
       assetTypes.forEach((asset) => {
@@ -631,67 +623,24 @@ const TradingApp = () => {
       });
 
       if (data.spotPositions && spotCurrentPrices.length) {
-        count =
-          data.spotPositions.length +
-          data.spotPositions.filter((position) => position.orderLimit == 1)
-            .length;
+        count = data.spotPositions.length + data.spotPositions.filter((position) => position.orderLimit == 1).length;
         if (count !== spotPositionsCount) {
-          // spotPositionsDiv.innerHTML = ""; // Clear previous positions
           spotClosedPositionsDiv.innerHTML = ""; // Clear previous positions
           spotOpenOrdersDiv.innerHTML = ""; // Clear previous limit orders
         }
-        // data.spotPositions.forEach((position) => {
-        //   spotBalances[assetTypes.indexOf(position.assetType) + 1] = 0;
-        // });
         data.spotPositions.forEach((position) => {
-          if (position.positionType == "buy") {
-            spotBalances[assetTypes.indexOf(position.assetType) + 1] +=
-              parseFloat(position.amount);
-          }
-          if (position.positionType == "sell") {
-            spotBalances[assetTypes.indexOf(position.assetType) + 1] -=
-              parseFloat(position.amount);
-          }
-
           let currentPrice = spotCurrentPrices.filter(
             (item) => item.assetType == position.assetType
           )[0].price;
 
-          if (position.orderLimit == 1) {
-            let startTrading = 0;
-            if (
-              (position.entryPrice < position.limitPrice &&
-                position.limitPrice < currentPrice) ||
-              (position.entryPrice > position.limitPrice &&
-                position.limitPrice > currentPrice)
-            ) {
-              fetch("/api/trade/startTrade", {
-                method: "POST",
-                headers: {
-                  Authorization: "Bearer " + localStorage.getItem("token"),
-                  "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                  positionId: position.id,
-                }),
-              })
-                .then((response) => response.json())
-                .catch((error) =>
-                  console.error("Error starting spot Trading:", error)
-                );
-              position.orderLimit = 0;
-            }
-          }
           let positionDiv = document.createElement("div");
 
           if (count !== spotPositionsCount) {
             positionDiv.textContent = `
-                                    ${1 - position.orderLimit}-${
-              position.orderType
-            }-${position.positionType}-  
-                                    Amount: ${position.amount} (${
-              position.assetType
-            })-
+                                    ${1 - position.orderLimit}-${position.orderType
+              }-${position.positionType}-  
+                                    Amount: ${position.amount} (${position.assetType
+              })-
                                     Fair Price: ${position.entryPrice}(USDT),
                                 `;
             if (position.orderType == "limit")
@@ -735,13 +684,42 @@ const TradingApp = () => {
             }
           }
         });
-        if (spotPositionsCount == count && spotBalances[spotAssetType] == 0) {
-          spotClosedPositionsDiv.innerHTML = "";
-        }
+
         spotPositionsCount = count;
         // setSpotPositionsCount(count)
       }
+      // closedFuturesPositions: [
+      //   {
+      //     id: 1731909286692,
+      //     assetType: 'BTC',
+      //     positionType: 'Long',
+      //     orderType: 'market',
+      //     orderLimit: 0,
+      //     amount: 1,
+      //     leverage: 1,
+      //     tp: 100000000,
+      //     sl: 0,
+      //     limitPrice: 0,
+      //     entryPrice: 90653.5,
+      //     exitPrice: 90633.5,
+      //     realizedPL: -0.00022062027390007004,
+      //     closedReason: 0
+      //   }
+      // ],
+      data.spotPositions.forEach((position) => {
+        if ((position.positionType == "buy" && position.orderType == "market") 
+          || (position.orderType == "limit" && position.orderLimit == 0)) {
+          spotBalances[assetTypes.indexOf(position.assetType) + 1] += parseFloat(position.amount);
+        }
+        if ((position.positionType == "sell" && position.orderType == "market")
+          || (position.orderType == "limit" && position.orderLimit == 0)) {
+          spotBalances[assetTypes.indexOf(position.assetType) + 1] -= parseFloat(position.amount);
+        }
+      });
 
+      // if (spotPositionsCount == count && spotBalances[spotAssetType] == 0) {
+      //   spotClosedPositionsDiv.innerHTML = "";
+      // }
 
       if (spotCurrentPrices.length) {
         spotBalancesUpdate();
@@ -800,11 +778,9 @@ const TradingApp = () => {
         // console.log("--spot--", spotCurrentPrices, spotBalances);
         spotBalances.forEach((balance, index) => {
           if (index > 0) {
-            spotValue +=
-              parseFloat(balance) *
-              spotCurrentPrices.filter(
-                (item) => item.assetType == assetTypes[index - 1]
-              )[0].price;
+            spotValue += parseFloat(balance) * spotCurrentPrices.filter(
+              (item) => item.assetType == assetTypes[index - 1]
+            )[0].price;
           }
         });
         // console.log('spotValue = ', spotValue)
@@ -816,6 +792,7 @@ const TradingApp = () => {
         document.getElementById("spot-statistics").innerHTML = statisticsBar;
         //---------------spot asset statistics-----------------------------------
         statisticsBar = "<span class='money-type'>Est. Balances: </span>";
+        console.log(spotBalances);
         spotBalances.forEach((balance, index) => {
           if (!index) {
             statisticsBar +=
@@ -1044,7 +1021,7 @@ const TradingApp = () => {
     futuresPositionsCount = 0;
     futuresClosedPositionsCount = 0;
     document.getElementById("futures-dropdownOptions").style.display = "none";
-  } 
+  }
 
   function spotSelectOption(value) {
     setSpotAssetType(value);
@@ -1129,13 +1106,13 @@ const TradingApp = () => {
         innerDiv.style.alignItems = "center";
 
         const img = document.createElement("img");
-        img.src = `icon/${assetTypes[index-1]}.png`;
+        img.src = `icon/${assetTypes[index - 1]}.png`;
         img.style.width = "24px";
         img.style.height = "24px";
 
         const assetTypeSpan = document.createElement("span");
         assetTypeSpan.style.marginLeft = "10px";
-        assetTypeSpan.textContent = assetTypes[index-1] + "  ";
+        assetTypeSpan.textContent = assetTypes[index - 1] + "  ";
 
         innerDiv.appendChild(img);
         innerDiv.appendChild(assetTypeSpan);
@@ -1154,37 +1131,37 @@ const TradingApp = () => {
     });
 
     document
-    .querySelectorAll(".custom-dropdown")
-    .forEach((dropdown) => {
-      const selected = dropdown.querySelector(
-        ".custom-dropdown-selected"
-      );
-      const options = dropdown.querySelector(
-        ".custom-dropdown-options"
-      );
+      .querySelectorAll(".custom-dropdown")
+      .forEach((dropdown) => {
+        const selected = dropdown.querySelector(
+          ".custom-dropdown-selected"
+        );
+        const options = dropdown.querySelector(
+          ".custom-dropdown-options"
+        );
 
-      selected.addEventListener("click", () => {
-        dropdown.classList.toggle("open");
-      });
-
-      options
-        .querySelectorAll(".custom-dropdown-option")
-        .forEach((option) => {
-          option.addEventListener("click", () => {
-            selected.querySelector(
-              ".custom-dropdown-selected-text"
-            ).textContent = option.textContent;
-            dropdown.classList.remove("open");
-          });
+        selected.addEventListener("click", () => {
+          dropdown.classList.toggle("open");
         });
 
-      // Close dropdown when clicking outside
-      window.addEventListener("click", (event) => {
-        if (!dropdown.contains(event.target)) {
-          dropdown.classList.remove("open");
-        }
+        options
+          .querySelectorAll(".custom-dropdown-option")
+          .forEach((option) => {
+            option.addEventListener("click", () => {
+              selected.querySelector(
+                ".custom-dropdown-selected-text"
+              ).textContent = option.textContent;
+              dropdown.classList.remove("open");
+            });
+          });
+
+        // Close dropdown when clicking outside
+        window.addEventListener("click", (event) => {
+          if (!dropdown.contains(event.target)) {
+            dropdown.classList.remove("open");
+          }
+        });
       });
-    });
   }
 
   function hideSpot() {
@@ -1378,7 +1355,7 @@ const TradingApp = () => {
   }
 
   async function futuresTrading(positionType, orderType) {
-    if(!tradingEnable)return;
+    if (!tradingEnable) return;
     tradingEnable = false;
 
     let betAmount = 0;
@@ -1456,7 +1433,7 @@ const TradingApp = () => {
   }
 
   function spotTrading(positionType, orderType) {
-    if(!tradingEnable)return;
+    if (!tradingEnable) return;
     tradingEnable = false;
 
     let amount = 0;
@@ -1486,7 +1463,7 @@ const TradingApp = () => {
       if (
         spotUSDTBalance <
         amount *
-          spotCurrentPrices.filter((item) => item.assetType == spotAssetType)[0].price
+        spotCurrentPrices.filter((item) => item.assetType == spotAssetType)[0].price
       ) {
         console.log(spotUSDTBalance, amount, spotCurrentPrices);
         alert("Insufficient USDT");
@@ -1497,7 +1474,7 @@ const TradingApp = () => {
 
     if (positionType == "sell") {
       if (amount > spotBalances[assetTypes.indexOf(spotAssetType) + 1]) {
-        alert("Insufficient " + spotAssetType + amount + "/" +spotBalances[assetTypes.indexOf(spotAssetType) + 1]  + "/" +  (assetTypes.indexOf(spotAssetType) + 1) + ":" + spotBalances.length);
+        alert("Insufficient " + spotAssetType + amount + "/" + spotBalances[assetTypes.indexOf(spotAssetType) + 1] + "/" + (assetTypes.indexOf(spotAssetType) + 1) + ":" + spotBalances.length);
         tradingEnable = true;
         return;
       }
@@ -2794,7 +2771,7 @@ const TradingApp = () => {
                 <div
                   className="custom-dropdown-selected"
                   id="futures-dropdownSelected"
-                  onClick={() => {showFuturesAssetsList();}}
+                  onClick={() => { showFuturesAssetsList(); }}
                 ></div>
                 <div
                   className="custom-dropdown-options"
@@ -2929,7 +2906,7 @@ const TradingApp = () => {
                 <div
                   className="custom-dropdown-selected"
                   id="spot-dropdownSelected"
-                  onClick={() => {showSpotAssetsList();}}
+                  onClick={() => { showSpotAssetsList(); }}
                 ></div>
                 <div
                   className="custom-dropdown-options"

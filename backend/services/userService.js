@@ -30,4 +30,16 @@ async function getUser(username) {
     }
 }
 
-module.exports = { loadUsers, saveUser, getUser };
+async function getAllUsers() {
+    try {
+        const users = await User.find()
+        if (!users) {
+            throw new Error('User not found');
+        }
+        return users;
+    } catch (err) {
+        console.error(err.message);
+    }
+}
+
+module.exports = { loadUsers, saveUser, getUser, getAllUsers };
