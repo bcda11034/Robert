@@ -68,3 +68,54 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+```json
+closedFuturesPositions: [
+  {
+    id: 1731909286692,
+    assetType: 'BTC',
+    positionType: 'Long',
+    orderType: 'market',
+    orderLimit: 0,
+    amount: 1,
+    leverage: 1,
+    tp: 100000000,
+    sl: 0,
+    limitPrice: 0,
+    entryPrice: 90653.5,
+    exitPrice: 90633.5,
+    realizedPL: -0.00022062027390007004,
+    closedReason: 0
+  }
+]
+```
+
+
+```json
+{
+    id: 1731912827171,
+    assetType: 'BTC',
+    positionType: 'buy',
+    orderType: 'limit',
+    orderLimit: 0,
+    amount: 1,
+    limitPrice: 91348.01,
+    entryPrice: 91335.16
+}
+```
+
+```javascript
+//deposit for test
+await updateUserBalance("RobertConner1214", 100000, 100000);
+positions = {};
+positions["futuresPositions"] = [];
+positions["closedFuturesPositions"] = [];
+positions["spotPositions"] = [];
+positions["closedSpotPositions"] = [];
+await saveUserPositions("RobertConner1214", positions);
+```
+    
+
+
+
+

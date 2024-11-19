@@ -688,31 +688,17 @@ const TradingApp = () => {
         spotPositionsCount = count;
         // setSpotPositionsCount(count)
       }
-      // closedFuturesPositions: [
-      //   {
-      //     id: 1731909286692,
-      //     assetType: 'BTC',
-      //     positionType: 'Long',
-      //     orderType: 'market',
-      //     orderLimit: 0,
-      //     amount: 1,
-      //     leverage: 1,
-      //     tp: 100000000,
-      //     sl: 0,
-      //     limitPrice: 0,
-      //     entryPrice: 90653.5,
-      //     exitPrice: 90633.5,
-      //     realizedPL: -0.00022062027390007004,
-      //     closedReason: 0
-      //   }
-      // ],
+
+      console.log(data.spotPositions);
       data.spotPositions.forEach((position) => {
-        if ((position.positionType == "buy" && position.orderType == "market") 
-          || (position.orderType == "limit" && position.orderLimit == 0)) {
+        if (position.positionType == "buy" 
+          && ((position.orderType == "market") 
+          || (position.orderType == "limit" && position.orderLimit == 0))) {
           spotBalances[assetTypes.indexOf(position.assetType) + 1] += parseFloat(position.amount);
         }
-        if ((position.positionType == "sell" && position.orderType == "market")
-          || (position.orderType == "limit" && position.orderLimit == 0)) {
+        if (position.positionType == "sell" 
+          && ((position.orderType == "market")
+          || (position.orderType == "limit" && position.orderLimit == 0))) {
           spotBalances[assetTypes.indexOf(position.assetType) + 1] -= parseFloat(position.amount);
         }
       });

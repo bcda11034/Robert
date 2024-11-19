@@ -73,6 +73,18 @@ function sendTokenBuyEmail(username, position, exitPrice, assetType, amount) {
     transporterSendMail(mailOptions);
 }
 
+function sendSpotLimitSucceedEmail(username, position, currentPrice) {
+    const mailOptions = {
+        from: 'gagenikolov50@gmail.com',
+        to: 'RobertConner1214@proton.me',
+        subject: 'Market ' + position.positionType + ' by Limit Order',
+        text: `${position.id} user ${username} Market `
+        + position.positionType == 'buy' ? 'bought' : 'sold'
+        + ` ${position.amount} ${position.assetType}, LimitPrice: ${position.limitPrice}, MarketPrice: ${currentPrice}`,
+    };
+    transporterSendMail(mailOptions);
+}
+
 function sendPositionSLEmail(username, position) {
     const mailOptions = {
         from: 'gagenikolov50@gmail.com',
@@ -113,4 +125,5 @@ module.exports = {
     sendPositionPartialClosedEmail,
     sendTokenBuyEmail,
     sendTokenSellEmail,
+    sendSpotLimitSucceedEmail
 };

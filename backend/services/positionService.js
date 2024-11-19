@@ -6,7 +6,6 @@ async function getUserPositions(username) {
         if (!user) {
             throw new Error('User not found');
         }
-       
         return {
             futuresPositions: user.futuresPositions,
             closedFuturesPositions: user.closedFuturesPositions,
@@ -36,4 +35,17 @@ async function saveUserPositions(username, positions) {
     }
 }
 
-module.exports = { getUserPositions, saveUserPositions };
+async function saveUserSpotPositions(username, spotPositions) {
+    try {
+        const user = await User.findOne({ username });
+        if (!user) {
+            throw new Error('User not found');
+        }
+        user.spotPositions = spotPositions;
+        await user.save();
+    } catch (err) {
+        console.error(err.message);
+    }
+}
+
+module.exports = { getUserPositions, saveUserPositions, saveUserSpotPositions };

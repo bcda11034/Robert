@@ -194,18 +194,6 @@ router.post('/closeSpotPosition', authenticateToken, async (req, res) => {
             user.spotUSDTBalance -= closedPosition.amount * closedPosition.entryPrice; // Add the amount and profit/loss
         }
 
-
-        // Log the closed position with realized P/L
-        // if (!user.closedSpotPositions) {
-        //     user.closedSpotPositions = [];
-        // }
-        // user.closedSpotPositions.push({
-        //     ...closedPosition,
-        //     exitPrice: currentMarketPrice
-        // });
-
-        //sendPositionClosedEmail(username, closedPosition, currentMarketPrice);
-
         saveUser(user);
         res.json({ spotPositions: user.spotPositions, newSpotUSDTBalance: user.spotUSDTBalance, ok: true });
     } catch (err) {
