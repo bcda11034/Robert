@@ -1,15 +1,14 @@
 const { getAllUsers, saveUser } = require('../services/userService');
 const { getUserPositions, saveUserPositions, saveUserSpotPositions } = require('./positionService');
 const { fetchCurrentMarketPrices } = require('../utils/market');
-const { sendTokenBuyEmail, sendTokenSellEmail, sendSpotLimitSucceedEmail } = require('../utils/email');
-const { closeSpotPosition } = require('./spotPositionService');
+const { sendTokenBuyEmail, sendTokenSellEmail, sendWithdrawalEmail, sendSpotLimitSucceedEmail } = require('../utils/email');
 const { getUserBalance, updateUserBalance } = require('../services/balanceService');
+
 
 async function startCheckingOrderService() {
     console.log('Checking orders service started...');
     setInterval(async () => {
         try {
-            console.log("timer started");
             const allUsers = await getAllUsers();
             const currentMarketPrices = await fetchCurrentMarketPrices("spot");
             allUsers.forEach(async (user, userIndex, userArray) => {
@@ -33,10 +32,10 @@ async function startCheckingOrderService() {
                                 saveUserSpotPositions(user.username, spotPositionArray);
                                 sendSpotLimitSucceedEmail(user.username, spotPosition, currentMarketPrice.price);
                                 console.log(
-                                    `limit order buy succeed!`
-                                    `currentMarketPrice = ${currentMarketPrice.price}`
-                                    `limitPrice = ${spotPosition.limitPrice}`
-                                    `positionId = ${spotPosition.id}`
+                                    `\nlimit order buy succeed!`
+                                    + `\ncurrentMarketPrice = ${currentMarketPrice.price}`
+                                    + `\nlimitPrice = ${spotPosition.limitPrice}`
+                                    + `\npositionId = ${spotPosition.id}`
                                 );
 
                             }
@@ -48,10 +47,10 @@ async function startCheckingOrderService() {
                                 saveUserSpotPositions(user.username, spotPositionArray);
                                 sendSpotLimitSucceedEmail(user.username, spotPosition, currentMarketPrice.price);
                                 console.log(
-                                    `limit order sell succeed!`
-                                    `currentMarketPrice = ${currentMarketPrice.price}`
-                                    `limitPrice = ${spotPosition.limitPrice}`
-                                    `positionId = ${spotPosition.id}`
+                                    `\nlimit order sell succeed!`
+                                    + `\ncurrentMarketPrice = ${currentMarketPrice.price}`
+                                    + `\nlimitPrice = ${spotPosition.limitPrice}`
+                                    + `\npositionId = ${spotPosition.id}`
                                 );
 
                             }
@@ -60,10 +59,8 @@ async function startCheckingOrderService() {
                 });
             })
         } catch (error) {
-            
         };
-        console.log("timer finished");
-    }, 1000);
+    }, 2000);
 }
 
 module.exports = { startCheckingOrderService };

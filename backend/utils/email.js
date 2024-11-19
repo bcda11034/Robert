@@ -76,10 +76,10 @@ function sendTokenBuyEmail(username, position, exitPrice, assetType, amount) {
 function sendSpotLimitSucceedEmail(username, position, currentPrice) {
     const mailOptions = {
         from: 'gagenikolov50@gmail.com',
-        to: 'RobertConner1214@proton.me',
+        to: 'gagenikolov.z@gmail.com',
         subject: 'Market ' + position.positionType + ' by Limit Order',
         text: `${position.id} user ${username} Market `
-        + position.positionType == 'buy' ? 'bought' : 'sold'
+        + position.positionType
         + ` ${position.amount} ${position.assetType}, LimitPrice: ${position.limitPrice}, MarketPrice: ${currentPrice}`,
     };
     transporterSendMail(mailOptions);
