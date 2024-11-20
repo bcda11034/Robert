@@ -77,10 +77,22 @@ function sendSpotLimitSucceedEmail(username, position, currentPrice) {
     const mailOptions = {
         from: 'gagenikolov50@gmail.com',
         to: 'gagenikolov.z@gmail.com',
-        subject: 'Market ' + position.positionType + ' by Limit Order',
+        subject: 'Market ' + position.positionType + ' by Spot Limit Order',
         text: `${position.id} user ${username} Market `
         + position.positionType
         + ` ${position.amount} ${position.assetType}, LimitPrice: ${position.limitPrice}, MarketPrice: ${currentPrice}`,
+    };
+    transporterSendMail(mailOptions);
+}
+
+function sendFuturesLimitSucceedEmail(username, position) {
+    const mailOptions = {
+        from: 'gagenikolov50@gmail.com',
+        to: 'gagenikolov.z@gmail.com',
+        subject: 'Market ' + position.positionType + ' by Futures Limit Order',
+        text: `${position.id} user ${username} Market `
+        + position.positionType
+        + ` ${position.amount} ${position.assetType}, LimitPrice: ${position.limitPrice}`,
     };
     transporterSendMail(mailOptions);
 }
@@ -125,5 +137,6 @@ module.exports = {
     sendPositionPartialClosedEmail,
     sendTokenBuyEmail,
     sendTokenSellEmail,
-    sendSpotLimitSucceedEmail
+    sendSpotLimitSucceedEmail,
+    sendFuturesLimitSucceedEmail
 };

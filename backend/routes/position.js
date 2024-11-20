@@ -87,7 +87,6 @@ router.post('/openFuturesPosition', authenticateToken, async (req, res) => {
 
         user.futuresPositions.push(position);
         saveUser(user);
-        sendPositionOpenEmail(username, position);
 
         res.json({ futuresPositions: user.futuresPositions, newfuturesUSDTBalance: user.futuresUSDTBalance, ok: true });
     } catch (err) {
@@ -148,9 +147,7 @@ router.post('/closeFuturesPosition', authenticateToken, async (req, res) => {
             realizedPL: profitLoss,
             closedReason: reason,
         });
-
-        sendPositionClosedEmail(username, closedPosition, currentMarketPrice);
-
+        
         saveUser(user);
         res.json({ futuresPositions: user.futuresPositions, newFuturesUSDTBalance: user.futuresUSDTBalance, profitLoss, ok: true });
 

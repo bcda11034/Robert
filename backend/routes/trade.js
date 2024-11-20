@@ -1,6 +1,8 @@
 const express = require('express');
 const { authenticateToken } = require('../middleware/auth');
 const { getUserPositions, saveUserPositions } = require('../services/positionService');
+const { sendFuturesLimitSucceedEmail } = require('../utils/email');
+
 const router = express.Router();
 
 router.post('/startTrade', authenticateToken, async (req, res) => {
@@ -23,10 +25,12 @@ router.post('/startTrade', authenticateToken, async (req, res) => {
             positions.spotPositions[positionIndex].orderLimit = 0;
         } else {
             positions.futuresPositions[positionIndex].orderLimit = 0;
+            sendFuturesLimitSucceedEmail(username, futuresPositions[positionIndex]);
         }
 
         // user.futuresUSDTBalance -= user.futuresPositions[positionIndex].amount;
         await saveUserPositions(username, positions);
+
         res.json({
             futuresPositions: positions.futuresPositions,
             spotPositions: positions.spotPositions
